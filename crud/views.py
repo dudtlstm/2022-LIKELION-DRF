@@ -14,11 +14,9 @@ def movie_list_create(request):
     if request.method == 'GET':
         movies = Movie.objects.all()
         serializer = MovieListSerializer(movies,many=True)
-
         return Response(data=serializer.data)
 
     if request.method == 'POST':
-
         serializer = MovieListSerializer(data=request.data)
         #유효성 검사
         if serializer.is_valid(raise_exception=True):
@@ -55,7 +53,6 @@ def review_list_create(request):
     if request.method == 'GET':
         reviews = Review.objects.all()
         serializer = ReviewListSerializer(reviews ,many=True)
-
         return Response(data=serializer.data)
 
     if request.method == 'POST':
