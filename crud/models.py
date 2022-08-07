@@ -18,3 +18,4 @@ class Review(models.Model):
 
 #궁금한 점
 #1. movie의 name을 받아 올 수 있는 방법이 있는 건가
+#2. Review에도 id 필드가 있어야 할까..? 나의 선택인 것인가..
