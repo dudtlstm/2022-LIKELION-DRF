@@ -18,4 +18,3 @@ class Review(models.Model):
 
 #궁금한 점
 #1. movie의 name을 받아 올 수 있는 방법이 있는 건가
-#2. Review에 id 필드를 정의해 주지 않아도 뜨는 이유는 movie에서 id가 있기 때문인 건가
