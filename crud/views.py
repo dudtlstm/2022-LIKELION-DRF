@@ -47,24 +47,27 @@ def movie_detail_update_delete(request, movie_pk):
 # crud - update = patch / delete = delete / create = post
 
 # Review 관련
-@api_view(['GET', 'POST'])
-def review_list_create(request):
+@api_view(['POST','GET'])
+def review_create(request, movie_pk):
 
     if request.method == 'GET':
-        reviews = Review.objects.all()
-        serializer = ReviewListSerializer(reviews ,many=True)
-        return Response(data=serializer.data)
+        reviews = Review.objects.filter(movie = movie_pk)
+        serializer = ReviewListSerializer(reviews, many=True)
+
+        return Response(data = serializer.data)
 
     if request.method == 'POST':
-        serializer = ReviewListSerializer(data=request.data)
-        #유효성 검사
+
+        serializer = ReviewListSerializer(data = request.data)
+
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(data=serializer.data)
 
+
 @api_view(['GET', 'PATCH', 'DELETE'])
-def review_detail_update_delete(request, review_pk):
-    review = get_object_or_404(Review, pk=review_pk)
+def review_detail_update_delete(request, movie_pk, review_pk):
+    review = get_object_or_404(Review.objects.filter(movie = movie_pk), pk = review_pk)
 
     if request.method == 'GET':
         serializer = ReviewListSerializer(review)
