@@ -8,6 +8,7 @@ class Movie(models.Model):
     content = models.TextField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
+    image = models.ImageField(blank=True, null=True, upload_to="crud/")
 
 class Review(models.Model):
     id = models.AutoField(primary_key=True)
@@ -16,7 +17,3 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
     #데이터베이스 상으로 확인해 보면 Movie의 id와 Review의 movie가 동일한 값을 가지게 될 것 -> 확인 완료 !! 신기하다
-
-#궁금한 점
-#1. movie의 name을 받아 올 수 있는 방법이 있는 건가
-#2. Review에도 id 필드가 있어야 할까..? 나의 선택인 것인가..
